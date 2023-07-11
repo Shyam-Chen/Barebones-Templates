@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:vue/vue3-recommended",
+    "@vue/eslint-config-prettier",
+    "@vue/eslint-config-typescript"
+  ],
+  "rules": {
+    "vue/multi-word-component-names": "off",
+    "vue/attribute-hyphenation": "off",
+    "vue/v-on-event-hyphenation": "off"
+  }
+}
