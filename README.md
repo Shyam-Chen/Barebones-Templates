@@ -10,28 +10,25 @@ This is the reason you see a `pnpm-lock.yaml`. That being said, any package mana
 
 These templates are meant to be used as is via the [degit](https://github.com/Rich-Harris/degit) utility.
 
-### Vue
+### Vue template
 
 ```sh
-# vue template
 $ npx degit Vanilla-IceCream/starter-templates/vue my-vue-project
 $ cd my-vue-project
 $ pnpm install
 ```
 
-### Fastify
+### Fastify template
 
 ```sh
-# fastify template
 $ npx degit Vanilla-IceCream/starter-templates/fastify my-fastify-project
 $ cd my-fastify-project
 $ pnpm install
 ```
 
-### Library
+### Library template
 
 ```sh
-# library template
 $ npx degit Vanilla-IceCream/starter-templates/library my-library-project
 $ cd my-library-project
 $ pnpm install
