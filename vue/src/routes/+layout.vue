@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RouterLink } from 'vue-router';
+import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
@@ -11,7 +11,7 @@ import { RouterLink } from 'vue-router';
     </ul>
 
     <main class="py-4">
-      <slot></slot>
+      <RouterView />
     </main>
   </div>
 </template>

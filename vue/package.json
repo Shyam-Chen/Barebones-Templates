@@ -1,5 +1,6 @@
 {
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -8,30 +9,31 @@
     "unit": "vitest --dir src --coverage --run"
   },
   "dependencies": {
-    "@unocss/reset": "^0.53.5",
+    "@unocss/reset": "^0.53.6",
     "ofetch": "^1.1.1",
     "vue": "^3.3.4",
     "vue-formor": "^3.1.2",
     "vue-router": "^4.2.4",
+    "vue-storer": "^0.6.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.88",
+    "@iconify/json": "^2.2.94",
     "@vitejs/plugin-vue": "^4.2.3",
-    "@vue/eslint-config-prettier": "^7.1.0",
+    "@vue/eslint-config-prettier": "^8.0.0",
     "@vue/eslint-config-typescript": "^11.0.3",
-    "@vue/test-utils": "^2.4.0",
-    "eslint": "^8.44.0",
+    "@vue/test-utils": "^2.4.1",
+    "eslint": "^8.45.0",
     "eslint-plugin-vue": "^9.15.1",
-    "happy-dom": "^10.1.1",
+    "happy-dom": "^10.5.2",
     "prettier": "^3.0.0",
     "process-envify": "^2.0.0",
-    "sass": "^1.63.6",
+    "sass": "^1.64.1",
     "typescript": "^5.1.6",
-    "unocss": "^0.53.5",
-    "vite": "^4.4.2",
-    "vite-plugin-vue-routes": "^0.9.13",
+    "unocss": "^0.53.6",
+    "vite": "^4.4.7",
+    "vite-plugin-vue-routes": "^1.0.3",
     "vitest": "^0.33.0",
-    "vue-tsc": "^1.8.4"
+    "vue-tsc": "^1.8.6"
   }
 }

@@ -5,10 +5,10 @@ import routes from 'virtual:vue-routes';
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    ...routes(),
+    ...routes,
 
     {
-      path: '/:pathMatch(.*)*',
+      path: '/:slug(.*)*',
       component: () => import('~/Error.vue'),
     },
   ],
