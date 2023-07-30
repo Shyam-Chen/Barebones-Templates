@@ -1,4 +1,4 @@
-# starter-templates
+# Starter Templates
 
 This repository holds most of the starter templates for [Vite](https://vitejs.dev/).
 
@@ -13,23 +13,17 @@ These templates are meant to be used as is via the [degit](https://github.com/Ri
 ### Vue template
 
 ```sh
-$ npx degit Vanilla-IceCream/starter-templates/vue my-vue-project
-$ cd my-vue-project
-$ pnpm install
+npx degit Shyam-Chen/Starter-Templates/vue my-vue-project
 ```
 
 ### Fastify template
 
 ```sh
-$ npx degit Vanilla-IceCream/starter-templates/fastify my-fastify-project
-$ cd my-fastify-project
-$ pnpm install
+npx degit Shyam-Chen/Starter-Templates/fastify my-fastify-project
 ```
 
 ### Library template
 
 ```sh
-$ npx degit Vanilla-IceCream/starter-templates/library my-library-project
-$ cd my-library-project
-$ pnpm install
+npx degit Shyam-Chen/Starter-Templates/library my-library-project
 ```
