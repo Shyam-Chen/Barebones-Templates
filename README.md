@@ -22,6 +22,12 @@ npx degit Shyam-Chen/Starter-Templates/vue my-vue-project
 npx degit Shyam-Chen/Starter-Templates/fastify my-fastify-project
 ```
 
+### Tauri template
+
+```sh
+npx degit Shyam-Chen/Starter-Templates/tauri my-tauri-project
+```
+
 ### Library template
 
 ```sh
