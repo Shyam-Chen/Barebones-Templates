@@ -20,8 +20,8 @@ $ bun add _LIBRARY_NAME_
 
 ```ts
 // esm
-import { _ } from '_LIBRARY_NAME_';
+import _libName_ from '_LIBRARY_NAME_';
 
 // cjs
-const { _ } = require('_LIBRARY_NAME_');
+const _libName_ = require('_LIBRARY_NAME_');
 ```

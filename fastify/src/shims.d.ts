@@ -6,5 +6,3 @@ declare namespace NodeJS {
     PORT: number;
   }
 }
-
-declare module '@geut/fastify-uws';

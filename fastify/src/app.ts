@@ -1,5 +1,5 @@
 import fastify from 'fastify';
-import { serverFactory, fastifyUws } from '@geut/fastify-uws';
+import { serverFactory } from 'fastify-uws';
 
 import router from '~/plugins/router';
 
@@ -14,8 +14,6 @@ export default () => {
   });
 
   app.register(import('./error'));
-
-  app.register(fastifyUws);
 
   app.register(router);
 
