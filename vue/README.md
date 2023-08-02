@@ -12,5 +12,7 @@ $ pnpm install
 ```
 
 ```sh
+$ pnpm tauri dev
+
 $ pnpm dev
 ```
