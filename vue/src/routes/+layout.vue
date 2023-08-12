@@ -5,9 +5,9 @@ import { RouterLink, RouterView } from 'vue-router';
 <template>
   <div class="p-4">
     <ul class="list">
-      <li><RouterLink to="/" class="link">Home</RouterLink></li>
-      <li><RouterLink to="/about" class="link">About</RouterLink></li>
-      <li><RouterLink to="/contact" class="link">Contact</RouterLink></li>
+      <li><RouterLink to="/" class="link" data-testid="home">Home</RouterLink></li>
+      <li><RouterLink to="/about" class="link" data-testid="about">About</RouterLink></li>
+      <li><RouterLink to="/contact" class="link" data-testid="contact">Contact</RouterLink></li>
     </ul>
 
     <main class="py-4">
