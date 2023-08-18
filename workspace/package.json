@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm -C packages/web dev",
+    "build": "pnpm -C packages/web build",
+    "build:ui": "pnpm -C packages/ui build",
+    "preview": "pnpm -C packages/web preview"
+  }
+}
