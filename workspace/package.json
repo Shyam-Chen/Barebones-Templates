@@ -2,7 +2,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "pnpm -C packages/web dev",
+    "dev": "pnpm -C packages/web dev --port 5174",
+    "dev:auth": "pnpm -C packages/auth dev --port 5173",
     "build": "pnpm -C packages/web build",
     "build:ui": "pnpm -C packages/ui build",
     "preview": "pnpm -C packages/web preview"
