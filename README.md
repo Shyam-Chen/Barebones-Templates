@@ -39,15 +39,3 @@ npx degit Shyam-Chen/Starter-Templates/library my-library-project
 ```sh
 npx degit Shyam-Chen/Starter-Templates/workspace my-workspace-project
 ```
-
-### Universal template
-
-```sh
-npx degit Shyam-Chen/Starter-Templates/universal my-universal-project
-```
-
-### Platform template
-
-```sh
-
-```

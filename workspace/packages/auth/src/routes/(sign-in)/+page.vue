@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
+import { XButton } from '@x/ui';
 
 // import TextField from '~/components/TextField.vue';
 // import Button from '~/components/Button.vue';
@@ -56,7 +57,7 @@ function signIn() {
         <input type="password" class="border" />
       </div>
 
-      <button type="button" class="border px-2 py-1" @click="signIn">Sign in</button>
+      <XButton @click="signIn">Sign in</XButton>
     </form>
   </div>
 </template>
