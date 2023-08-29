@@ -1,57 +1,128 @@
 /* eslint-disable no-cond-assign */
+import maxBy from 'lodash/maxBy';
 
 export function getPageRoutes(importMap) {
-  // const routes = import.meta.glob(['/routes/**/+layout.vue', '/routes/**/+page.vue'], {
-  //   eager: true,
-  // });
-  // console.log(routes);
+  const routes = import.meta.glob(['/routes/**/+layout.vue', '/routes/**/+page.vue'], {
+    eager: true,
+  });
 
-  // console.log(
-  //   Object.keys(routes).map((path) => {
-  //     const _key = path;
-  //     path = path.replace('layout.vue', '').replace('/+page.vue', '');
+  const c_routes = Object.keys(routes);
+  const x_routes = [];
 
-  //     // /(group) ->
-  //     path = path.replace(/\/\(.+?\)/g, '');
-  //     if (!path) path += '/';
+  const hasRootLayout = c_routes.includes('/routes/+layout.vue');
 
-  //     // /[...rest] -> /:rest*
-  //     path = path.replace(/\[\.\.\.([^\]]+)\]/g, ':$1*');
+  c_routes.forEach((path) => {
+    let level = 0;
 
-  //     // /[[id]] -> /:id?
-  //     path = path.replace(/\[\[(.+?)\]\]/g, ':$1?');
+    if (hasRootLayout) {
+      level += 1;
+    }
 
-  //     // /[id] -> /:id
-  //     path = path.replace(/\[(.+?)\]/g, ':$1');
+    const _key = path;
+    path = path.replace('/routes', '').replace('layout.vue', '').replace('/+page.vue', '');
 
-  //     return {
-  //       path,
-  //       component: routes[_key].default,
-  //     };
-  //   }),
-  // );
+    // /(group) ->
+    path = path.replace(/\/\(.+?\)/g, '');
+    if (!path) path += '/';
 
-  return (
-    Object.keys(importMap)
-      // Ensure that static routes have
-      // precedence over the dynamic ones
-      .sort((a, b) => (a > b ? -1 : 1))
-      .map((path) => {
-        return {
-          path: path
-            // Remove /pages and .jsx extension
-            .slice(6, -4)
-            // Replace [id] with :id
-            .replace(/\[(\w+)\]/, (_, m) => `:${m}`)
-            // Replace '/index' with '/'
-            .replace(/\/index$/, '/'),
-          // The React component (default export)
-          component: importMap[path].default,
-          // The getServerSideProps individual export
-          getServerSideProps: importMap[path].getServerSideProps,
-        };
-      })
-  );
+    // /[...rest] -> /:rest*
+    path = path.replace(/\[\.\.\.([^\]]+)\]/g, ':$1*');
+
+    // /[[id]] -> /:id?
+    path = path.replace(/\[\[(.+?)\]\]/g, ':$1?');
+
+    // /[id] -> /:id
+    path = path.replace(/\[(.+?)\]/g, ':$1');
+
+    const key = _key
+      .replace('/routes', '')
+      .replace('+layout.vue', '')
+      .replace('+page.vue', '')
+      .split('/')
+      .filter(Boolean)
+      .join('/');
+
+    const component = routes[_key].default;
+    const getServerSideProps = routes[_key].getServerSideProps;
+
+    if (path.includes('/+')) {
+      // FIXME:
+      x_routes.push({
+        route: { path: '/', component, children: [], getServerSideProps },
+        level,
+        key,
+      });
+    } else {
+      x_routes.push({ route: { path, component, getServerSideProps }, level, key });
+    }
+  });
+
+  x_routes.forEach((item) => {
+    if (item.key) {
+      x_routes
+        .filter((route) => route.key && Array.isArray(route.route.children))
+        .forEach((route) => {
+          if (item.key.startsWith(route.key)) {
+            item.level += 1;
+          }
+        });
+    }
+  });
+
+  function createRoutes(routes, level = 0, curArr = [], curKeysArr = []) {
+    const arr = [];
+    const keysArr = [];
+
+    const layouts = routes.filter((r) => Array.isArray(r.route.children));
+
+    let maxLevelOfLayouts = 0;
+
+    if (layouts.length) {
+      maxLevelOfLayouts = Number(maxBy(layouts, (item) => item.level)?.level) - level;
+    } else {
+      return routes.map((r) => r.route);
+    }
+
+    if (maxLevelOfLayouts === 0) {
+      if (!hasRootLayout) {
+        const rootRoutes = routes.filter((r) => r.level === 0).map((r) => r.route);
+        return [...rootRoutes, ...curArr];
+      }
+
+      return curArr;
+    }
+
+    const layoutsMaxLevel = layouts.filter((l) => l.level === maxLevelOfLayouts);
+
+    for (let i = 0; i < layoutsMaxLevel.length; i++) {
+      const layout = layoutsMaxLevel[i];
+
+      const cur = {};
+      cur.path = layout.route.path;
+      cur.component = layout.route.component;
+
+      if (curKeysArr.join(',').includes(layout.key)) {
+        const sameLayer = routes
+          .filter(
+            (r) => r.key.includes(layout.key) && !r.route.children && r.level === maxLevelOfLayouts,
+          )
+          .map((r) => r.route);
+
+        cur.children = [...curArr, ...sameLayer];
+      } else {
+        cur.children = routes
+          .filter((r) => r.key.includes(layout.key) && !r.route.children)
+          .map((r) => r.route);
+      }
+
+      arr.push(cur);
+      keysArr.push(layout.key);
+    }
+
+    return createRoutes(routes, level + 1, arr, keysArr);
+  }
+
+  return createRoutes(x_routes);
 }
 
 export function createPageManager({ ctx, router, routes, ssr }) {
