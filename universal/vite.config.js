@@ -6,6 +6,6 @@ import vue from '@vitejs/plugin-vue';
 const path = fileURLToPath(new URL(import.meta.url));
 
 export default {
-  root: resolve(dirname(path), 'client'),
+  root: resolve(dirname(path), 'src'),
   plugins: [vue()],
 };

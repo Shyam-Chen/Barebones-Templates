@@ -24,9 +24,9 @@ function signIn() {
 
   const data = { accessToken: 'foobar' };
 
-  sub.value?.contentWindow?.postMessage(JSON.stringify(data), 'http://127.0.0.1:5174');
+  sub.value?.contentWindow?.postMessage(JSON.stringify(data), 'http://localhost:5174');
 
-  location.assign('http://127.0.0.1:5174');
+  location.assign('http://localhost:5174');
 }
 
 // onUnmounted(() => {
@@ -35,7 +35,7 @@ function signIn() {
 </script>
 
 <template>
-  <iframe ref="sub" src="http://127.0.0.1:5174" class="hidden"></iframe>
+  <iframe ref="sub" src="http://localhost:5174" class="hidden"></iframe>
 
   <div class="w-full max-w-sm">
     <form class="bg-white dark:bg-slate-800 shadow-md rounded px-8 pt-6 pb-8">

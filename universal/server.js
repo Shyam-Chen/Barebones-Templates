@@ -23,10 +23,6 @@ export async function main(dev) {
     }),
   );
 
-  server.get('/api/todo-list', (_, reply) => {
-    reply.send(['Do laundry', 'Respond to emails', 'Write report']);
-  });
-
   server.setErrorHandler((err, req, reply) => {
     console.error(err);
     reply.code(500);

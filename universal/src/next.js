@@ -46,9 +46,8 @@ export function getPageRoutes(importMap) {
     const getServerSideProps = routes[_key].getServerSideProps;
 
     if (path.includes('/+')) {
-      // FIXME:
       x_routes.push({
-        route: { path: '/', component, children: [], getServerSideProps },
+        route: { path: path.replace('/+', '/*'), component, children: [], getServerSideProps },
         level,
         key,
       });
