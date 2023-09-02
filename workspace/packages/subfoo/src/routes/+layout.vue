@@ -1,13 +1,20 @@
 <script lang="ts" setup>
 import { RouterLink, RouterView } from 'vue-router';
+
+function goToSubBar() {
+  location.assign('http://localhost:5175');
+}
 </script>
 
 <template>
   <div class="p-4">
+    <h1>Sub Foo</h1>
+
     <ul class="list">
       <li><RouterLink to="/" class="link" data-testid="home">Home</RouterLink></li>
       <li><RouterLink to="/about" class="link" data-testid="about">About</RouterLink></li>
       <li><RouterLink to="/contact" class="link" data-testid="contact">Contact</RouterLink></li>
+      <li><div class="link" @click="goToSubBar">Sub Bar</div></li>
     </ul>
 
     <main class="py-4">

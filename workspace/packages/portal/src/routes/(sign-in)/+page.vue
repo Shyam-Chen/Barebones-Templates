@@ -15,16 +15,20 @@ import { XButton } from '@x/ui';
 // const locale = useLocale();
 // const schema = useSchema();
 
-const sub = ref<HTMLIFrameElement>();
+const subfoo = ref<HTMLIFrameElement>();
+const subbar = ref<HTMLIFrameElement>();
 
 function signIn() {
   // if (schema.validate()) {
   //   actions.signIn();
   // }
 
-  const data = { accessToken: 'foobar' };
+  const data = {
+    accessToken: 'foobar',
+  };
 
-  sub.value?.contentWindow?.postMessage(JSON.stringify(data), 'http://localhost:5174');
+  subfoo.value?.contentWindow?.postMessage(JSON.stringify(data), 'http://localhost:5174');
+  subbar.value?.contentWindow?.postMessage(JSON.stringify(data), 'http://localhost:5175');
 
   location.assign('http://localhost:5174');
 }
@@ -35,7 +39,8 @@ function signIn() {
 </script>
 
 <template>
-  <iframe ref="sub" src="http://localhost:5174" class="hidden"></iframe>
+  <iframe ref="subfoo" src="http://localhost:5174" class="hidden"></iframe>
+  <iframe ref="subbar" src="http://localhost:5175" class="hidden"></iframe>
 
   <div class="w-full max-w-sm">
     <form class="bg-white dark:bg-slate-800 shadow-md rounded px-8 pt-6 pb-8">

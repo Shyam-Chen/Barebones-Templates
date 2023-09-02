@@ -12,13 +12,11 @@ $ pnpm install
 ```
 
 ```sh
-$ pnpm dev
+$ pnpm build:ui
 ```
 
 ```sh
-$ pnpm install pinia --filter web
-```
-
-```sh
-$ pnpm install vite-plugin-dts -D --filter ui
+$ pnpm dev:portal
+$ pnpm dev:subfoo
+$ pnpm dev:subbar
 ```
