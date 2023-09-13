@@ -1,17 +1,17 @@
 import type { FastifyInstance } from 'fastify';
 
 export default async (app: FastifyInstance) => {
-  app.get('', { websocket: true }, (con) => {
-    console.log('Client connected');
+  app.get('', { websocket: true }, (con, req) => {
+    req.log.info('Client connected');
 
     con.socket.send(`Hello from Fastify!`);
 
     con.socket.on('message', (message: MessageEvent) => {
-      console.log(`Client message: ${message}`);
+      req.log.info(`Client message: ${message}`);
     });
 
     con.socket.on('close', () => {
-      console.log('Client disconnected');
+      req.log.info('Client disconnected');
     });
   });
 };
