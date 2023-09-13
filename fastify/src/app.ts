@@ -1,4 +1,6 @@
 import fastify from 'fastify';
+import underPressure from '@fastify/under-pressure';
+import websocket from '@fastify/websocket';
 
 import router from '~/plugins/router';
 
@@ -12,6 +14,9 @@ export default () => {
   });
 
   app.register(import('./error'));
+
+  app.register(underPressure, { exposeStatusRoute: '/api/healthz' });
+  app.register(websocket);
 
   app.register(router);
 
