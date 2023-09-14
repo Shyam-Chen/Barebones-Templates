@@ -13,11 +13,7 @@ import { RouterLink } from 'vue-router';
         <p class="mt-4 mb-8">
           But dont worry, you can find plenty of other things on our homepage.
         </p>
-        <RouterLink
-          rel="noopener noreferrer"
-          to="/"
-          class="px-8 py-3 font-semibold rounded bg-blue-600 text-gray-50"
-        >
+        <RouterLink to="/" class="px-8 py-3 font-semibold rounded bg-blue-600 text-gray-50">
           Back to homepage
         </RouterLink>
       </div>

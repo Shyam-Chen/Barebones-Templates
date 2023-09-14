@@ -1,5 +1,4 @@
 import type { VueWrapper } from '@vue/test-utils';
-import { beforeEach, afterEach, test, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 
 import router from '~/plugins/router';
@@ -16,7 +15,7 @@ afterEach(() => {
   wrapper.unmount();
 });
 
-test('+layout.vue', async () => {
+test('/+layout.vue', async () => {
   const push = vi.spyOn(router, 'push');
   await router.isReady();
 
