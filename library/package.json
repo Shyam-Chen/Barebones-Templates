@@ -19,7 +19,8 @@
   "scripts": {
     "build": "vite build",
     "lint": "eslint 'src/**/*.ts'",
-    "unit": "vitest --dir src --run --coverage"
+    "check": "tsc --noEmit",
+    "test": "vitest --dir src --coverage --run"
   },
   "repository": {
     "type": "git",

@@ -33,9 +33,3 @@ npx degit Shyam-Chen/Starter-Templates/tauri my-tauri-project
 ```sh
 npx degit Shyam-Chen/Starter-Templates/library my-library-project
 ```
-
-### Workspace template
-
-```sh
-npx degit Shyam-Chen/Starter-Templates/workspace my-workspace-project
-```

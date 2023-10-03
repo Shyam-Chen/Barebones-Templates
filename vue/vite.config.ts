@@ -9,13 +9,7 @@ import { presetUno, presetIcons, transformerDirectives } from 'unocss';
 export default defineConfig({
   define: envify({}),
   plugins: [
-    vue({
-      template: {
-        compilerOptions: {
-          isCustomElement: (tag) => tag.includes('-'),
-        },
-      },
-    }),
+    vue(),
     vueRoutes(),
     unocss({
       presets: [presetUno(), presetIcons()],
