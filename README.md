@@ -10,26 +10,14 @@ This is the reason you see a `pnpm-lock.yaml`. That being said, any package mana
 
 These templates are meant to be used as is via the [degit](https://github.com/Rich-Harris/degit) utility.
 
-### Vue template
+### Vue template for SPA client
 
 ```sh
 npx degit Shyam-Chen/Starter-Templates/vue my-vue-project
 ```
 
-### Fastify template
+### Fastify template for API server
 
 ```sh
 npx degit Shyam-Chen/Starter-Templates/fastify my-fastify-project
-```
-
-### Tauri template
-
-```sh
-npx degit Shyam-Chen/Starter-Templates/tauri my-tauri-project
-```
-
-### Library template
-
-```sh
-npx degit Shyam-Chen/Starter-Templates/library my-library-project
 ```

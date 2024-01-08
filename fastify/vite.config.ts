@@ -12,7 +12,6 @@ export default defineConfig({
   plugins: [
     fastify({
       serverPath: './src/main.ts',
-      devMode: false,
     }),
     fastifyRoutes(),
   ],
