@@ -1,6 +1,6 @@
 import { once } from 'events';
-import fastify from 'fastify';
 import websocket from '@fastify/websocket';
+import fastify from 'fastify';
 import WebSocket from 'ws';
 
 import helloWs from '../+handler';

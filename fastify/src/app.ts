@@ -1,6 +1,6 @@
-import fastify from 'fastify';
 import underPressure from '@fastify/under-pressure';
 import websocket from '@fastify/websocket';
+import fastify from 'fastify';
 
 import router from '~/plugins/router';
 
