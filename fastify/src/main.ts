@@ -15,16 +15,6 @@ const start = async () => {
       process.exit(1);
     }
   }
-
-  if (import.meta.hot) {
-    import.meta.hot.on('vite:beforeFullReload', () => {
-      server.close();
-    });
-
-    import.meta.hot.dispose(() => {
-      server.close();
-    });
-  }
 };
 
 start();

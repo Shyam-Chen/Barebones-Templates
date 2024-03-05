@@ -1,13 +1,15 @@
 import { resolve } from 'path';
-import { defineConfig } from 'vite';
-import envify from 'process-envify';
 import vue from '@vitejs/plugin-vue';
-import vueRoutes from 'vite-plugin-vue-routes';
+import envify from 'process-envify';
+import { presetIcons, presetUno, transformerDirectives } from 'unocss';
 import unocss from 'unocss/vite';
-import { presetUno, presetIcons, transformerDirectives } from 'unocss';
+import { defineConfig } from 'vite';
+import vueRoutes from 'vite-plugin-vue-routes';
 
 export default defineConfig({
-  define: envify({}),
+  define: envify({
+    API_URL: process.env.API_URL || '',
+  }),
   plugins: [
     vue(),
     vueRoutes(),

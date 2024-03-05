@@ -2,8 +2,8 @@
 
 ## Prerequisites
 
-- Node.js version 18+
-- PNPM version 8+
+- Node.js version 20
+- PNPM version 8
 
 ## Usage
 
