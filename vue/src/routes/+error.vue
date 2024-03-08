@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { reactive, onBeforeMount } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { onBeforeMount, reactive } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
 const router = useRouter();
 const route = useRoute();
@@ -25,7 +25,7 @@ onBeforeMount(() => {
   if (route.query.code === '500') {
     message.statusCode = '500';
     message.title = 'Internal Server Error';
-    message.description = `Sorry, we are already working to solve the problem.`;
+    message.description = 'Sorry, we are already working to solve the problem.';
   }
 });
 </script>
