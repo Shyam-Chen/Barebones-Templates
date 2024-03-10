@@ -28,6 +28,11 @@ $ pnpm tauri android dev
 # select emulator
 ```
 
+```sh
+$ pnpm clean:android
+$ pnpm tauri android init
+```
+
 ### iOS
 
 ```sh
@@ -39,4 +44,9 @@ $ xcrun -f devicectl
 $ pnpm tauri ios init
 $ pnpm tauri ios dev
 # select emulator
+```
+
+```sh
+$ pnpm clean:ios
+$ pnpm tauri ios init
 ```
