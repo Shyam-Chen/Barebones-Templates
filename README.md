@@ -27,3 +27,9 @@ pnpm dlx degit Shyam-Chen/Starter-Templates/tauri my-tauri-project
 ```sh
 pnpm dlx degit Shyam-Chen/Starter-Templates/fastify my-fastify-project
 ```
+
+### [Pulumi](https://www.pulumi.com/) template
+
+```sh
+pnpm dlx degit Shyam-Chen/Starter-Templates/pulumi my-pulumi-project
+```
