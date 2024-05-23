@@ -2,7 +2,7 @@ import { resolve } from 'node:path';
 import vue from '@vitejs/plugin-vue';
 import envify from 'process-envify';
 import tailwindColors from 'tailwindcss/colors';
-import { presetIcons, presetUno, transformerDirectives } from 'unocss';
+import { presetIcons, presetUno, presetWebFonts, transformerDirectives } from 'unocss';
 import unocss from 'unocss/vite';
 import { defineConfig } from 'vite';
 import vueRoutes from 'vite-plugin-vue-routes';
@@ -15,7 +15,7 @@ export default defineConfig({
     vue(),
     vueRoutes(),
     unocss({
-      presets: [presetUno(), presetIcons()],
+      presets: [presetUno(), presetIcons(), presetWebFonts()],
       transformers: [transformerDirectives({ enforce: 'pre' })],
       theme: {
         colors: {

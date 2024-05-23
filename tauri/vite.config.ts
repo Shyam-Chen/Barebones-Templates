@@ -18,11 +18,11 @@ export default defineConfig(async () => ({
   server: {
     port: 1420,
     strictPort: true,
-    host: mobile ? '0.0.0.0' : false,
+    host: mobile ? '192.168.100.202' /* await internalIpV4() */ : false,
     hmr: mobile
       ? {
           protocol: 'ws',
-          host: await internalIpV4(),
+          host: '192.168.100.202', // await internalIpV4(),
           port: 1421,
         }
       : undefined,
