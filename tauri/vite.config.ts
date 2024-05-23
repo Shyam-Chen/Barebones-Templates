@@ -1,5 +1,5 @@
 import vue from '@vitejs/plugin-vue';
-import { internalIpV4 } from 'internal-ip';
+import { internalIPv4 } from 'private-ip-address';
 import { defineConfig } from 'vite';
 import vueRoutes from 'vite-plugin-vue-routes';
 
@@ -18,11 +18,11 @@ export default defineConfig(async () => ({
   server: {
     port: 1420,
     strictPort: true,
-    host: mobile ? '192.168.100.202' /* await internalIpV4() */ : false,
+    host: mobile ? internalIPv4() : false,
     hmr: mobile
       ? {
           protocol: 'ws',
-          host: '192.168.100.202', // await internalIpV4(),
+          host: internalIPv4(),
           port: 1421,
         }
       : undefined,
