@@ -1,6 +1,6 @@
-# Starter Templates
+# Barebones Templates
 
-This repository holds most of the starter templates for full stack web development.
+🍖 This repository holds most of the starter templates for full stack web development.
 
 ## Get started
 
