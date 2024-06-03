@@ -3,27 +3,32 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "dev:mobile": "tauri ios dev",
+    "dev:desktop": "tauri dev",
+    "build": "vite build",
     "preview": "vite preview",
-    "tauri": "tauri",
-    "lint": "biome check --apply ./src",
-    "clean:android": "rimraf ./src-tauri/gen/android",
-    "clean:ios": "rimraf ./src-tauri/gen/apple"
+    "lint": "eslint ./src",
+    "check": "vue-tsc --noEmit",
+    "test": "vitest --dir src --coverage --run"
+
   },
   "dependencies": {
-    "@tauri-apps/api": "2.0.0-beta.12",
-    "@tauri-apps/plugin-shell": "2.0.0-beta.4",
+    "@tauri-apps/api": "2.0.0-beta.13",
+    "@tauri-apps/plugin-shell": "2.0.0-beta.6",
     "vue": "3.4.27"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.7.3",
-    "@tauri-apps/cli": "2.0.0-beta.17",
-    "@vitejs/plugin-vue": "5.0.4",
+    "@tauri-apps/cli": "2.0.0-beta.20",
+    "@vitejs/plugin-vue": "5.0.5",
     "@vitest/coverage-v8": "1.6.0",
+    "@vue/eslint-config-prettier": "9.0.0",
+    "@vue/eslint-config-typescript": "13.0.0",
+    "eslint": "8.57.0",
+    "eslint-plugin-vue": "9.26.0",
+    "prettier": "3.3.0",
     "private-ip-address": "1.0.0",
-    "rimraf": "5.0.7",
     "typescript": "5.4.5",
-    "vite": "5.2.11",
+    "vite": "5.2.12",
     "vite-plugin-vue-routes": "1.1.0",
     "vitest": "1.6.0",
     "vue-tsc": "2.0.19"

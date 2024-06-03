@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - Node.js version 20
-- PNPM version 8
+- PNPM version 9
 
 ## Usage
 

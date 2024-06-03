@@ -15,7 +15,7 @@ These templates are meant to be used as is via the [degit](https://github.com/Ri
 Barebones starting point for [Vue](https://vuejs.org/) projects with [Tailwind](https://tailwindcss.com/) using [TypeScript](https://www.typescriptlang.org/).
 
 ```sh
-pnpm dlx degit Shyam-Chen/Starter-Templates/vue my-vue-project
+pnpm dlx degit Shyam-Chen/Barebones-Templates/vue my-vue-project
 ```
 
 ### [Tauri Template](./tauri)
@@ -23,7 +23,7 @@ pnpm dlx degit Shyam-Chen/Starter-Templates/vue my-vue-project
 Barebones starting point for [Tauri](https://tauri.app/) projects with [Xcode](https://developer.apple.com/xcode/) using [TypeScript](https://www.typescriptlang.org/).
 
 ```sh
-pnpm dlx degit Shyam-Chen/Starter-Templates/tauri my-tauri-project
+pnpm dlx degit Shyam-Chen/Barebones-Templates/tauri my-tauri-project
 ```
 
 ### [Fastify Template](./fastify)
@@ -31,7 +31,7 @@ pnpm dlx degit Shyam-Chen/Starter-Templates/tauri my-tauri-project
 Barebones starting point for [Fastify](https://fastify.dev/) projects with [Mongo](https://www.mongodb.com/) using [TypeScript](https://www.typescriptlang.org/).
 
 ```sh
-pnpm dlx degit Shyam-Chen/Starter-Templates/fastify my-fastify-project
+pnpm dlx degit Shyam-Chen/Barebones-Templates/fastify my-fastify-project
 ```
 
 ### [Pulumi Template](./pulumi)
@@ -39,5 +39,5 @@ pnpm dlx degit Shyam-Chen/Starter-Templates/fastify my-fastify-project
 Barebones starting point for [Pulumi](https://www.pulumi.com/) projects with [Azure](https://azure.microsoft.com/) using [TypeScript](https://www.typescriptlang.org/).
 
 ```sh
-pnpm dlx degit Shyam-Chen/Starter-Templates/pulumi my-pulumi-project
+pnpm dlx degit Shyam-Chen/Barebones-Templates/pulumi my-pulumi-project
 ```

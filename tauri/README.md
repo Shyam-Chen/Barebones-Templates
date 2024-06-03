@@ -3,13 +3,31 @@
 ## Prerequisites
 
 - Node.js version 20
-- PNPM version 8
+- PNPM version 9
 - [Tauri version 2](https://beta.tauri.app/guides/prerequisites/)
 
-### Windows/macOS
+### iOS
 
 ```sh
-$ pnpm tauri dev
+$ sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+$ xcrun -f devicectl
+```
+
+```sh
+$ pnpm tauri ios init
+$ pnpm dev:mobile # $ pnpm tauri ios dev
+# select emulator
+```
+
+```sh
+$ rm -rf ./src-tauri/gen/apple
+$ pnpm tauri ios init
+```
+
+### macOS
+
+```sh
+$ pnpm dev:desktop # $ pnpm tauri dev
 ```
 
 ### Android
@@ -29,24 +47,12 @@ $ pnpm tauri android dev
 ```
 
 ```sh
-$ pnpm clean:android
+$ rm -rf ./src-tauri/gen/android
 $ pnpm tauri android init
 ```
 
-### iOS
+### Windows
 
 ```sh
-$ sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-$ xcrun -f devicectl
-```
-
-```sh
-$ pnpm tauri ios init
-$ pnpm tauri ios dev
-# select emulator
-```
-
-```sh
-$ pnpm clean:ios
-$ pnpm tauri ios init
+$ pnpm tauri dev
 ```

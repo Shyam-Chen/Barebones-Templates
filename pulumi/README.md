@@ -4,6 +4,9 @@
 
 - Node.js version 20
 - PNPM version 9
+- Docker
+- Pulumi
+- Azure
 
 ## Usage
 
@@ -12,5 +15,5 @@ $ pnpm install
 ```
 
 ```sh
-$ pnpm dev
+$ pulumi stack select dev
 ```
