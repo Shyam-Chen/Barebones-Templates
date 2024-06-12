@@ -2,9 +2,11 @@
 
 ## Prerequisites
 
-- Node.js version 20
-- PNPM version 9
-- [Tauri version 2](https://beta.tauri.app/guides/prerequisites/)
+- Node.js v20
+- PNPM v9
+- Tauri v2
+
+## Usage
 
 ### iOS
 

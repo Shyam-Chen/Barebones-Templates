@@ -15,7 +15,13 @@ export default defineConfig({
     vue(),
     vueRoutes(),
     unocss({
-      presets: [presetUno(), presetIcons(), presetWebFonts()],
+      presets: [
+        presetUno(),
+        presetIcons(),
+        presetWebFonts({
+          fonts: { sans: 'Roboto' },
+        }),
+      ],
       transformers: [transformerDirectives({ enforce: 'pre' })],
       theme: {
         colors: {

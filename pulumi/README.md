@@ -2,11 +2,11 @@
 
 ## Prerequisites
 
-- Node.js version 20
-- PNPM version 9
-- Docker
-- Pulumi
-- Azure
+- Node.js v20
+- PNPM v9
+- Docker v4
+- Pulumi v3
+- Azure v2
 
 ## Usage
 
