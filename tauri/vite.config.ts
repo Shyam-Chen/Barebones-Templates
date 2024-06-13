@@ -4,7 +4,7 @@ import { internalIPv4 } from 'private-ip-address';
 import { defineConfig } from 'vite';
 import vueRoutes from 'vite-plugin-vue-routes';
 import tailwindColors from 'tailwindcss/colors';
-import { presetIcons, presetUno, transformerDirectives } from 'unocss';
+import { presetIcons, presetUno, presetWebFonts, transformerDirectives } from 'unocss';
 import unocss from 'unocss/vite';
 import envify from 'process-envify';
 
@@ -18,7 +18,16 @@ export default defineConfig({
     vue(),
     vueRoutes(),
     unocss({
-      presets: [presetUno(), presetIcons()],
+      presets: [
+        presetUno(),
+        presetIcons(),
+        presetWebFonts({
+          fonts: {
+            sans: ['Roboto:400,500,600,700,800'],
+            mono: ['Roboto Mono:400,500,600,700,800'],
+          },
+        }),
+      ],
       transformers: [transformerDirectives({ enforce: 'pre' })],
       theme: {
         colors: {
@@ -35,10 +44,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '~': resolve(__dirname, 'src'),
-      '@': resolve(__dirname, 'src'),
-      mock: resolve(__dirname, '../mock/src/routes'),
     },
-    mainFields: ['module'],
   },
   clearScreen: false,
   server: {

@@ -19,7 +19,10 @@ export default defineConfig({
         presetUno(),
         presetIcons(),
         presetWebFonts({
-          fonts: { sans: 'Roboto' },
+          fonts: {
+            sans: ['Roboto:400,500,600,700,800'],
+            mono: ['Roboto Mono:400,500,600,700,800'],
+          },
         }),
       ],
       transformers: [transformerDirectives({ enforce: 'pre' })],
