@@ -10,4 +10,4 @@ const app = createApp(App);
 
 app.use(router);
 
-app.mount('#root');
+app.mount('#app-root');
