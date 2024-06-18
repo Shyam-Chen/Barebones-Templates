@@ -17,3 +17,7 @@ $ pnpm install
 ```sh
 $ pulumi stack select dev
 ```
+
+```sh
+$ pulumi up
+```
