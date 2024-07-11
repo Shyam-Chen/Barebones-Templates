@@ -10,7 +10,7 @@ This is the reason you see a `pnpm-lock.yaml`. That being said, any package mana
 
 These templates are meant to be used as is via the [degit](https://github.com/Rich-Harris/degit) utility.
 
-### [Vue Template](./vue)
+### [Vue Template](./vue) for Web-side Coding
 
 Barebones starting point for [Vue](https://vuejs.org/) projects with [Tailwind](https://tailwindcss.com/) using [TypeScript](https://www.typescriptlang.org/).
 
@@ -18,7 +18,7 @@ Barebones starting point for [Vue](https://vuejs.org/) projects with [Tailwind](
 pnpm dlx degit Shyam-Chen/Barebones-Templates/vue my-vue-project
 ```
 
-### [Tauri Template](./tauri)
+### [Tauri Template](./tauri) for Native-side Coding
 
 Barebones starting point for [Tauri](https://tauri.app/) projects with [Xcode](https://developer.apple.com/xcode/) using [TypeScript](https://www.typescriptlang.org/).
 
@@ -26,7 +26,7 @@ Barebones starting point for [Tauri](https://tauri.app/) projects with [Xcode](h
 pnpm dlx degit Shyam-Chen/Barebones-Templates/tauri my-tauri-project
 ```
 
-### [Fastify Template](./fastify)
+### [Fastify Template](./fastify) for Server-side Coding
 
 Barebones starting point for [Fastify](https://fastify.dev/) projects with [Mongo](https://www.mongodb.com/) using [TypeScript](https://www.typescriptlang.org/).
 
@@ -34,7 +34,7 @@ Barebones starting point for [Fastify](https://fastify.dev/) projects with [Mong
 pnpm dlx degit Shyam-Chen/Barebones-Templates/fastify my-fastify-project
 ```
 
-### [Pulumi Template](./pulumi)
+### [Pulumi Template](./pulumi) for Cloud-side Coding
 
 Barebones starting point for [Pulumi](https://www.pulumi.com/) projects with [Azure](https://azure.microsoft.com/) using [TypeScript](https://www.typescriptlang.org/).
 
