@@ -14,3 +14,23 @@ $ pnpm install
 ```sh
 $ pnpm dev
 ```
+
+```sh
+$ pnpm build
+```
+
+```sh
+$ pnpm preview
+```
+
+```sh
+$ pnpm lint
+```
+
+```sh
+$ pnpm check
+```
+
+```sh
+$ pnpm test
+```
