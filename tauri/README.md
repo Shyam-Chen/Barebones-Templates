@@ -8,6 +8,10 @@
 
 ## Usage
 
+```sh
+$ pnpm install
+```
+
 ### iOS
 
 ```sh
@@ -17,6 +21,8 @@ $ xcrun -f devicectl
 
 ```sh
 $ pnpm tauri ios init
+# Xcode -> Open Developer Tool -> Simulator -> File -> Open Simulator -> iPhone Pro
+
 $ pnpm dev:mobile # $ pnpm tauri ios dev
 # select emulator
 ```

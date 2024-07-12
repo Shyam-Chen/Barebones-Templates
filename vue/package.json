@@ -32,7 +32,7 @@
     "happy-dom": "14.12.3",
     "prettier": "3.3.2",
     "process-envify": "2.0.0",
-    "sass": "1.77.7",
+    "sass": "1.77.8",
     "tailwindcss": "3.4.4",
     "typescript": "5.5.3",
     "typescript-eslint": "7.16.0",
