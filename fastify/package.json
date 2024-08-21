@@ -7,28 +7,25 @@
     "preview": "vite preview",
     "lint": "biome check --write ./",
     "check": "tsc --noEmit",
-    "test": "vitest --dir src --coverage --run"
+    "test": "vitest run"
   },
   "dependencies": {
-    "@fastify/mongodb": "8.0.0",
-    "@fastify/multipart": "8.3.0",
     "@fastify/one-line-logger": "1.4.0",
     "@fastify/sensible": "5.6.0",
-    "@fastify/type-provider-typebox": "4.0.0",
+    "@fastify/type-provider-typebox": "4.1.0",
     "@fastify/under-pressure": "8.5.1",
-    "@sinclair/typebox": "0.32.34",
+    "@sinclair/typebox": "0.33.7",
     "fastify": "4.28.1",
     "fastify-plugin": "4.5.1"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
-    "@types/node": "20.14.10",
-    "@vitest/coverage-v8": "2.0.2",
+    "@types/node": "20.16.1",
     "process-envify": "2.0.0",
-    "typescript": "5.5.3",
-    "vite": "5.3.3",
+    "typescript": "5.5.4",
+    "vite": "5.4.2",
     "vite-plugin-fastify": "1.2.5",
     "vite-plugin-fastify-routes": "1.1.1",
-    "vitest": "2.0.2"
+    "vitest": "2.0.5"
   }
 }
