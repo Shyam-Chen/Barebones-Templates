@@ -4,10 +4,13 @@
     "strict": true,
     "strictNullChecks": true,
 
+    "allowImportingTsExtensions": true,
     "baseUrl": ".",
     "module": "esnext",
-    "moduleResolution": "node",
-    "paths": {},
+    "moduleResolution": "bundler",
+    "paths": {
+      "~/*": ["src/*"]
+    },
     "resolveJsonModule": true,
     "types": ["vite/client", "vitest/globals"],
 

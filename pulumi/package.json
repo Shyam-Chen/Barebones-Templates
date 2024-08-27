@@ -8,15 +8,15 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@pulumi/azure-native": "2.49.1",
-    "@pulumi/docker": "4.5.4",
-    "@pulumi/pulumi": "3.123.0"
+    "@pulumi/azure-native": "2.57.0",
+    "@pulumi/docker": "4.5.5",
+    "@pulumi/pulumi": "3.129.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
-    "tsx": "4.16.2",
-    "typescript": "5.5.3",
-    "vite": "5.3.3",
-    "vitest": "2.0.2"
+    "tsx": "4.17.0",
+    "typescript": "5.5.4",
+    "vite": "5.4.2",
+    "vitest": "2.0.5"
   }
 }
