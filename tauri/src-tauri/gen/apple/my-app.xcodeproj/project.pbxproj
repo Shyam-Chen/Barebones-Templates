@@ -11,7 +11,6 @@
 		1BC51280B0FFD919843FF9ED /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ABDCA298343990CA7608AB4 /* Metal.framework */; };
 		20F5CA3179D526F58B1FD89A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A801CD593D08CD40B9103C4 /* Assets.xcassets */; };
 		23E074D04CDC1DFD749F167E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 480B87AF7AB363276809FF6D /* CoreGraphics.framework */; };
-		29FACDC935F87AA8C7201C59 /* libtauri_lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E93FEA913E9AB0588E52095 /* libtauri_lib.a */; };
 		617421D964A31FE99F6D9083 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0DA72BB09F83774F697DB68 /* Security.framework */; };
 		777A872D7DC515D036042BE7 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = EF5209BA357A402CF7AC1909 /* assets */; };
 		783FD20D64072A48A5057829 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05D10185C9308BB41295EB7 /* MetalKit.framework */; };
@@ -19,18 +18,19 @@
 		DF4A76406E6418547E005441 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A20C2ADFAF19C2651E5D0420 /* QuartzCore.framework */; };
 		DF809D69648DC91F609DA8C9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B753C340792ADB0C13BB129 /* UIKit.framework */; };
 		F58E838D7F03459E7E9A96DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528C1747547F32E2DC7B6824 /* LaunchScreen.storyboard */; };
+		F988B68CE06BD721C96F58EB /* libapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F8B75E1A4C720225833046D /* libapp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		048DDCB6B635DCF31F47EC13 /* lib.rs */ = {isa = PBXFileReference; path = lib.rs; sourceTree = "<group>"; };
 		0B753C340792ADB0C13BB129 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0E797FB7A504FB3C4191B74B /* main.rs */ = {isa = PBXFileReference; path = main.rs; sourceTree = "<group>"; };
-		3E93FEA913E9AB0588E52095 /* libtauri_lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtauri_lib.a; sourceTree = "<group>"; };
 		480B87AF7AB363276809FF6D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		528C1747547F32E2DC7B6824 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6CF815B5C84D3297940B2E0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		86B363D5E8E1112D389F0DD0 /* my-app_iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "my-app_iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ABDCA298343990CA7608AB4 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		8F8B75E1A4C720225833046D /* libapp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libapp.a; sourceTree = "<group>"; };
 		9A801CD593D08CD40B9103C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A20C2ADFAF19C2651E5D0420 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C05D10185C9308BB41295EB7 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
@@ -47,7 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29FACDC935F87AA8C7201C59 /* libtauri_lib.a in Frameworks */,
+				F988B68CE06BD721C96F58EB /* libapp.a in Frameworks */,
 				23E074D04CDC1DFD749F167E /* CoreGraphics.framework in Frameworks */,
 				1BC51280B0FFD919843FF9ED /* Metal.framework in Frameworks */,
 				783FD20D64072A48A5057829 /* MetalKit.framework in Frameworks */,
@@ -131,7 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				480B87AF7AB363276809FF6D /* CoreGraphics.framework */,
-				3E93FEA913E9AB0588E52095 /* libtauri_lib.a */,
+				8F8B75E1A4C720225833046D /* libapp.a */,
 				8ABDCA298343990CA7608AB4 /* Metal.framework */,
 				C05D10185C9308BB41295EB7 /* MetalKit.framework */,
 				A20C2ADFAF19C2651E5D0420 /* QuartzCore.framework */,
@@ -230,9 +230,9 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(SRCROOT)/Externals/x86_64/${CONFIGURATION}/libtauri_lib.a",
-				"$(SRCROOT)/Externals/arm64/${CONFIGURATION}/libtauri_lib.a",
-				"$(SRCROOT)/Externals/arm64-sim/${CONFIGURATION}/libtauri_lib.a",
+				"$(SRCROOT)/Externals/x86_64/${CONFIGURATION}/libapp.a",
+				"$(SRCROOT)/Externals/arm64/${CONFIGURATION}/libapp.a",
+				"$(SRCROOT)/Externals/arm64-sim/${CONFIGURATION}/libapp.a",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -284,6 +284,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64  arm64-sim";
+				CODE_SIGN_STYLE = Automatic;
 			};
 			name = release;
 		};
@@ -375,6 +376,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64  arm64-sim";
+				CODE_SIGN_STYLE = Automatic;
 			};
 			name = debug;
 		};
