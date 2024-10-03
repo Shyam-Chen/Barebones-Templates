@@ -10,6 +10,8 @@ export default defineConfig({
 
     HOST: process.env.HOST || '127.0.0.1',
     PORT: process.env.PORT || 3000,
+
+    SITE_URL: process.env.SITE_URL || 'http://127.0.0.1:5173',
   }),
   plugins: [
     fastify({

@@ -6,5 +6,7 @@ declare namespace NodeJS {
 
     HOST: string;
     PORT: number;
+
+    SITE_URL: string;
   }
 }
