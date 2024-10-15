@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:mobile": "pnpm tauri ios dev",
+    "dev:mobile": "tauri ios dev",
     "dev:desktop": "tauri dev",
     "build": "vite build",
     "preview": "vite preview",

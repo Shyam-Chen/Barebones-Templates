@@ -47,6 +47,13 @@ export default defineConfig({
       '~': resolve(import.meta.dirname, 'src'),
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern',
+      },
+    },
+  },
   clearScreen: false,
   server: {
     proxy: {
