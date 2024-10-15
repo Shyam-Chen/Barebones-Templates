@@ -1,6 +1,6 @@
 name: my-app
 options:
-  bundleIdPrefix: tauri.starter.dev
+  bundleIdPrefix: my-app.com
   deploymentTarget:
     iOS: 13.0
 fileGroups: [../../src]
@@ -10,9 +10,9 @@ configs:
 settingGroups:
   app:
     base:
-      PRODUCT_NAME: Tauri Starter
-      PRODUCT_BUNDLE_IDENTIFIER: tauri.starter.dev
-      DEVELOPMENT_TEAM: DEVELOPMENT_TEAM
+      PRODUCT_NAME: my-app
+      PRODUCT_BUNDLE_IDENTIFIER: my-app.com
+      DEVELOPMENT_TEAM: _DEVELOPMENT_TEAM_
 targetTemplates:
   app:
     type: application
@@ -52,8 +52,8 @@ targets:
           - UIInterfaceOrientationPortraitUpsideDown
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
-        CFBundleShortVersionString: 0.0.0
-        CFBundleVersion: 0.0.0
+        CFBundleShortVersionString: 0.1.0
+        CFBundleVersion: 0.1.0
     entitlements:
       path: my-app_iOS/my-app_iOS.entitlements
     scheme:

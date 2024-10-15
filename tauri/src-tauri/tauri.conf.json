@@ -1,7 +1,8 @@
 {
-  "productName": "Tauri Starter",
-  "version": "0.0.0",
-  "identifier": "tauri.starter.dev",
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "my-app",
+  "version": "0.1.0",
+  "identifier": "my-app.com",
   "build": {
     "beforeDevCommand": "pnpm dev",
     "devUrl": "http://localhost:1420",
@@ -11,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "Tauri Starter",
+        "title": "my-app",
         "width": 800,
         "height": 600,
         "center": true
@@ -23,7 +24,7 @@
   },
   "bundle": {
     "iOS": {
-      "developmentTeam": "DEVELOPMENT_TEAM"
+      "developmentTeam": "_DEVELOPMENT_TEAM_"
     },
     "active": true,
     "targets": "all",

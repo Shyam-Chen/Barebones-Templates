@@ -13,7 +13,7 @@ const host = process.env.TAURI_DEV_HOST;
 
 export default defineConfig({
   define: envify({
-    API_URL: mobile ? `http://${internalIPv4()}:3000` : process.env.API_URL || '',
+    API_URL: process.env.API_URL || mobile ? `http://${internalIPv4()}:3000` : '',
   }),
   plugins: [
     vue(),
