@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Node.js v20
+- Node.js v22
 - PNPM v9
 - Tauri v2
 

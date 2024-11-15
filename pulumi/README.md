@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Node.js v20
+- Node.js v22
 - PNPM v9
 - Docker v4
 - Pulumi v3
