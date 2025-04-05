@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - Node.js v22
-- PNPM v9
+- PNPM v10
 - Tauri v2
 
 ## Usage
