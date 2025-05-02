@@ -36,7 +36,7 @@ pnpm dlx degit Shyam-Chen/Barebones-Templates/fastify my-fastify-project
 
 ### [Pulumi Template](./pulumi) for Cloud-side Coding
 
-Barebones starting point for [Pulumi](https://www.pulumi.com/) projects with [Azure](https://azure.microsoft.com/) using [TypeScript](https://www.typescriptlang.org/).
+Barebones starting point for [Pulumi](https://www.pulumi.com/) projects with [Kubernetes](https://kubernetes.io/) using [TypeScript](https://www.typescriptlang.org/).
 
 ```sh
 pnpm dlx degit Shyam-Chen/Barebones-Templates/pulumi my-pulumi-project
