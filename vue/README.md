@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Node.js v22
+- Node.js v24
 - PNPM v10
 
 ## Usage
@@ -43,7 +43,7 @@ $ pnpm lint
 $ pnpm check
 ```
 
-### Runs unit tests
+### Runs tests
 
 ```sh
 $ pnpm test

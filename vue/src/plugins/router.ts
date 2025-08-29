@@ -7,8 +7,7 @@ const router = createRouter({
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (to.hash) return { selector: to.hash };
-    if (savedPosition) return savedPosition;
-    return { top: 0 };
+    return savedPosition || from.meta.scrollPosition || { top: 0 };
   },
 });
 

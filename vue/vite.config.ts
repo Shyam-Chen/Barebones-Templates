@@ -2,7 +2,7 @@ import path from 'node:path';
 import vue from '@vitejs/plugin-vue';
 import envify from 'process-envify';
 import tailwindColors from 'tailwindcss/colors';
-import { presetIcons, presetTypography, presetUno, presetWebFonts } from 'unocss';
+import { presetIcons, presetTypography, presetWind4, presetWebFonts } from 'unocss';
 import { transformerDirectives } from 'unocss';
 import unocss from 'unocss/vite';
 import { defineConfig } from 'vite';
@@ -13,11 +13,9 @@ export default defineConfig({
     API_URL: process.env.API_URL || '',
   }),
   plugins: [
-    vue(),
-    vueRoutes(),
     unocss({
       presets: [
-        presetUno(),
+        presetWind4(),
         presetTypography(),
         presetIcons(),
         presetWebFonts({
@@ -27,7 +25,7 @@ export default defineConfig({
           },
         }),
       ],
-      transformers: [transformerDirectives({ enforce: 'pre' })],
+      transformers: [transformerDirectives()],
       theme: {
         colors: {
           primary: tailwindColors.indigo,
@@ -39,18 +37,13 @@ export default defineConfig({
         },
       },
     }),
+    vue(),
+    vueRoutes(),
   ],
   resolve: {
     alias: {
       '~': path.resolve(__dirname, 'src'),
       '@': path.resolve(__dirname, 'src'),
-    },
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        api: 'modern',
-      },
     },
   },
   server: {
@@ -63,6 +56,15 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    environment: 'happy-dom',
+    browser: {
+      enabled: true,
+      provider: 'playwright',
+      instances: [
+        {
+          browser: 'chromium',
+          viewport: { width: 1280, height: 720 },
+        },
+      ],
+    },
   },
 });

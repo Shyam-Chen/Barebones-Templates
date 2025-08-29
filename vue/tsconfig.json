@@ -12,7 +12,7 @@
       "~/*": ["src/*"]
     },
     "resolveJsonModule": true,
-    "types": ["vite/client", "vitest/globals"],
+    "types": ["vite/client", "vitest", "vitest/globals", "@vitest/browser/providers/playwright"],
 
     "noEmit": true,
 
