@@ -12,7 +12,7 @@
       "~/*": ["src/*"]
     },
     "resolveJsonModule": true,
-    "types": ["vite/client", "vitest", "vitest/globals", "@vitest/browser/providers/playwright"],
+    "types": ["vite/client"],
 
     "noEmit": true,
 
@@ -28,6 +28,5 @@
 
     "skipLibCheck": true
   },
-  "include": ["src", "vite.config.ts"],
-  "exclude": ["node_modules", "dist", "coverage"]
+  "include": ["src/**/*", "vite.config.ts", "playwright.config.ts"]
 }

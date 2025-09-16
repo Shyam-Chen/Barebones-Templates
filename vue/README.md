@@ -11,6 +11,7 @@
 
 ```sh
 $ pnpm install
+$ pnpm dlx playwright install-deps chromium
 ```
 
 ### Compiles and hot-reloads for development

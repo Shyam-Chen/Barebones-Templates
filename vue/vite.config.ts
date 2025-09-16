@@ -15,7 +15,11 @@ export default defineConfig({
   plugins: [
     unocss({
       presets: [
-        presetWind4(),
+        presetWind4({
+          preflights: {
+            reset: true,
+          },
+        }),
         presetTypography(),
         presetIcons(),
         presetWebFonts({
@@ -52,19 +56,6 @@ export default defineConfig({
         target: 'http://127.0.0.1:3000',
         ws: true,
       },
-    },
-  },
-  test: {
-    globals: true,
-    browser: {
-      enabled: true,
-      provider: 'playwright',
-      instances: [
-        {
-          browser: 'chromium',
-          viewport: { width: 1280, height: 720 },
-        },
-      ],
     },
   },
 });

@@ -1,10 +1,11 @@
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
-import eslint from '@eslint/js';
-import typescript from 'typescript-eslint';
+import js from '@eslint/js';
+import ts from 'typescript-eslint';
 import vue from 'eslint-plugin-vue';
 import prettier from 'eslint-plugin-prettier/recommended';
 
-export default [
+export default defineConfig([
   {
     languageOptions: {
       globals: {
@@ -14,9 +15,9 @@ export default [
     },
   },
 
-  eslint.configs.recommended,
+  js.configs.recommended,
 
-  ...typescript.configs.recommended,
+  ts.configs.recommended,
   {
     rules: {
       '@typescript-eslint/no-explicit-any': 'warn',
@@ -28,7 +29,7 @@ export default [
   {
     languageOptions: {
       parserOptions: {
-        parser: typescript.parser,
+        parser: ts.parser,
       },
     },
     rules: {
@@ -79,4 +80,4 @@ export default [
       'prettier/prettier': 'warn',
     },
   },
-];
+]);
