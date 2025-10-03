@@ -1,6 +1,6 @@
 # Barebones Templates
 
-🍖 This repository holds most of the starter templates for full stack web development.
+🍖 This repository holds most of the starter templates for web development using [TypeScript](https://www.typescriptlang.org/) and [Rust](https://rust-lang.org/).
 
 ## Get started
 
@@ -12,7 +12,7 @@ These templates are meant to be used as is via the [degit](https://github.com/Ri
 
 ### [Vue Template](./vue) for Web-side Coding
 
-Barebones starting point for [Vue](https://vuejs.org/) projects with [Tailwind](https://tailwindcss.com/) using [TypeScript](https://www.typescriptlang.org/).
+Barebones starting point for [Vue](https://vuejs.org/) projects.
 
 ```sh
 pnpm dlx degit Shyam-Chen/Barebones-Templates/vue my-vue-project
@@ -20,7 +20,7 @@ pnpm dlx degit Shyam-Chen/Barebones-Templates/vue my-vue-project
 
 ### [Tauri Template](./tauri) for Native-side Coding
 
-Barebones starting point for [Tauri](https://tauri.app/) projects with [Xcode](https://developer.apple.com/xcode/) using [TypeScript](https://www.typescriptlang.org/).
+Barebones starting point for [Tauri](https://tauri.app/) projects.
 
 ```sh
 pnpm dlx degit Shyam-Chen/Barebones-Templates/tauri my-tauri-project
@@ -28,7 +28,7 @@ pnpm dlx degit Shyam-Chen/Barebones-Templates/tauri my-tauri-project
 
 ### [Fastify Template](./fastify) for Server-side Coding
 
-Barebones starting point for [Fastify](https://fastify.dev/) projects with [Mongo](https://www.mongodb.com/) using [TypeScript](https://www.typescriptlang.org/).
+Barebones starting point for [Fastify](https://fastify.dev/) projects.
 
 ```sh
 pnpm dlx degit Shyam-Chen/Barebones-Templates/fastify my-fastify-project
@@ -36,7 +36,7 @@ pnpm dlx degit Shyam-Chen/Barebones-Templates/fastify my-fastify-project
 
 ### [Pulumi Template](./pulumi) for Cloud-side Coding
 
-Barebones starting point for [Pulumi](https://www.pulumi.com/) projects with [Kubernetes](https://kubernetes.io/) using [TypeScript](https://www.typescriptlang.org/).
+Barebones starting point for [Pulumi](https://www.pulumi.com/) projects.
 
 ```sh
 pnpm dlx degit Shyam-Chen/Barebones-Templates/pulumi my-pulumi-project
@@ -44,8 +44,8 @@ pnpm dlx degit Shyam-Chen/Barebones-Templates/pulumi my-pulumi-project
 
 ### [Raspberry Pi Template](./raspberrypi) for Embedded-side Coding
 
-Barebones starting point for [Raspberry Pi](https://www.raspberrypi.com/) projects with [Tauri](https://tauri.app/) using [Rust](https://rust-lang.org/).
+Barebones starting point for [Raspberry Pi](https://www.raspberrypi.com/) projects.
 
 ```sh
-
+pnpm dlx degit Shyam-Chen/Barebones-Templates/raspberrypi my-raspberrypi-project
 ```

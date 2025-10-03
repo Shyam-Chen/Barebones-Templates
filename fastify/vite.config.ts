@@ -8,10 +8,10 @@ export default defineConfig({
   define: envify({
     NODE_ENV: process.env.NODE_ENV || 'development',
 
-    HOST: process.env.HOST || '127.0.0.1',
+    HOST: process.env.HOST || 'localhost',
     PORT: process.env.PORT || 3000,
 
-    SITE_URL: process.env.SITE_URL || 'http://127.0.0.1:5173',
+    SITE_URL: process.env.SITE_URL || 'http://localhost:5173',
   }),
   plugins: [
     fastify({
