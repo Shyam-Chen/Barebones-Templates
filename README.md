@@ -41,3 +41,11 @@ Barebones starting point for [Pulumi](https://www.pulumi.com/) projects with [Ku
 ```sh
 pnpm dlx degit Shyam-Chen/Barebones-Templates/pulumi my-pulumi-project
 ```
+
+### [Raspberry Pi Template](./raspberrypi) for Embedded-side Coding
+
+Barebones starting point for [Raspberry Pi](https://www.raspberrypi.com/) projects with [Tauri](https://tauri.app/) using [Rust](https://rust-lang.org/).
+
+```sh
+
+```
