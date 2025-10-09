@@ -64,3 +64,17 @@ $ pnpm tauri android init
 ```sh
 $ pnpm tauri dev
 ```
+
+### Linux
+
+#### Ubuntu Desktop
+
+```sh
+$ pnpm tauri dev
+```
+
+#### Raspberry Pi
+
+```sh
+$ pnpm tauri dev
+```
