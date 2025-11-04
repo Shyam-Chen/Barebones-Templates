@@ -1,6 +1,6 @@
 # Barebones Templates
 
-🍖 This repository holds most of the starter templates for web development using [TypeScript](https://www.typescriptlang.org/) and [Rust](https://rust-lang.org/).
+🍖 This repository holds most of the starter templates for application development using [TypeScript](https://www.typescriptlang.org/) and [Rust](https://rust-lang.org/).
 
 ## Get started
 
@@ -18,14 +18,6 @@ Barebones starting point for [Vue](https://vuejs.org/) projects.
 pnpm dlx degit Shyam-Chen/Barebones-Templates/vue my-vue-project
 ```
 
-### [Tauri Template](./tauri) for Native-side Coding
-
-Barebones starting point for [Tauri](https://tauri.app/) projects.
-
-```sh
-pnpm dlx degit Shyam-Chen/Barebones-Templates/tauri my-tauri-project
-```
-
 ### [Fastify Template](./fastify) for Server-side Coding
 
 Barebones starting point for [Fastify](https://fastify.dev/) projects.
@@ -40,4 +32,12 @@ Barebones starting point for [Pulumi](https://www.pulumi.com/) projects.
 
 ```sh
 pnpm dlx degit Shyam-Chen/Barebones-Templates/pulumi my-pulumi-project
+```
+
+### [Tauri Template](./tauri) for Native-side Coding
+
+Barebones starting point for [Tauri](https://tauri.app/) projects.
+
+```sh
+pnpm dlx degit Shyam-Chen/Barebones-Templates/tauri my-tauri-project
 ```
