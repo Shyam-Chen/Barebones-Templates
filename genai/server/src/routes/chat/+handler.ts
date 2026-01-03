@@ -3,7 +3,7 @@ import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { QdrantClient } from '@qdrant/js-client-rest';
 import type { ModelMessage } from 'ai';
-import { embedMany, jsonSchema, streamText, tool } from 'ai';
+import { embedMany, jsonSchema, streamText, generateText, tool } from 'ai';
 import Type from 'typebox';
 
 // import auth from '~/middleware/auth.ts';
@@ -15,6 +15,20 @@ const embedding = google.embeddingModel('gemini-embedding-001');
 const qdrant = new QdrantClient({ url: process.env.QDRANT_URL });
 
 export default (async (app) => {
+  /*
+  $ curl --request GET \
+         --url http://localhost:3000/api/chat
+  */
+  app.get('', async (request, reply) => {
+    const { text } = await generateText({
+      model: llm,
+      system: ``,
+      prompt: `什麼是 Qdrant？`,
+    });
+
+    return reply.send({ text });
+  });
+
   app.post('', { sse: true }, async (request, reply) => {
     const body = JSON.parse(request.body as string) as { messages: ModelMessage[] };
 
