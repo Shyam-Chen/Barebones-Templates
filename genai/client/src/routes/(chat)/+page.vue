@@ -5,6 +5,7 @@ const userName = ref('使用者');
 const userInput = ref('');
 const isLoading = ref(false);
 const chatContainer = ref(null);
+const autoScroll = ref(true);
 
 const messages = ref([
   // 測試資料範例
