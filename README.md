@@ -41,3 +41,43 @@ Barebones starting point for [Tauri](https://tauri.app/) projects.
 ```sh
 pnpm dlx degit Shyam-Chen/Barebones-Templates/tauri my-tauri-project
 ```
+
+---
+
+# Gen AI Engineering
+
+## Part 1: Gen AI Chat Assistant
+
+```coffee
+genai
+  ├── client
+  │   ├── src
+  │   └── package.json
+  ├── server
+  │   ├── src
+  │   └── package.json
+  └── infra
+      ├── src
+      └── package.json
+```
+
+## Part 2: Gen AI Voice Assistant
+
+```coffee
+genai2
+  ├── client
+  │   ├── src
+  │   ├── src-tauri
+  │   │   ├── src
+  │   │   └── Cargo.toml
+  │   └── package.json
+  ├── server
+  │   ├── src
+  │   └── package.json
+  ├── infra
+  │   ├── src
+  │   └── package.json
+  └── device
+      ├── src
+      └── Cargo.toml
+```

@@ -7,7 +7,6 @@ import fastifyRoutes from 'vite-plugin-fastify-routes';
 export default defineConfig({
   define: envify({
     NODE_ENV: process.env.NODE_ENV || 'development',
-
     HOST: process.env.HOST || 'localhost',
     PORT: process.env.PORT || 3000,
 
@@ -15,8 +14,8 @@ export default defineConfig({
     MONGODB_URL: process.env.MONGODB_URL || 'mongodb://root:password@127.0.0.1:27017/mydb',
     REDIS_URL: process.env.REDIS_URL || 'redis://127.0.0.1:6379',
     QDRANT_URL: process.env.QDRANT_URL || 'http://127.0.0.1:6333',
-
     SITE_URL: process.env.SITE_URL || 'http://localhost:5173',
+    SECRET_KEY: process.env.SECRET_KEY || 'tNTnXLYkhB5xMaAF9HKiu13ftxehU79K',
   }),
   plugins: [
     fastify({

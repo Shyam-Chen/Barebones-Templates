@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-// import { useDark } from '@vueuse/core';
+import { fromHighlighter } from '@shikijs/markdown-it/core';
+import { useDark } from '@vueuse/core';
 import MarkdownIt from 'markdown-it';
+import { createHighlighterCore } from 'shiki/core';
+import { createOnigurumaEngine } from 'shiki/engine/oniguruma';
 import { computed, onBeforeMount } from 'vue';
 
-// import { fromHighlighter } from '@shikijs/markdown-it/core';
-// import { bundledLanguages, createHighlighter } from 'shiki/bundle/full';
-
-// import useHighlighter from './useHighlighter';
+import useHighlighter from './useHighlighter.ts';
 
 const props = withDefaults(
   defineProps<{
@@ -17,36 +17,98 @@ const props = withDefaults(
   },
 );
 
-// const isDark = useDark();
+const isDark = useDark();
 
-// const highlighter = useHighlighter();
+const highlighter = useHighlighter();
 
 onBeforeMount(async () => {
-  // if (highlighter.state.core) return;
-  //
-  // highlighter.state.core = await createHighlighter({
-  //   langs: Object.keys(bundledLanguages),
-  //   themes: [import('shiki/themes/github-dark.mjs'), import('shiki/themes/github-light.mjs')],
-  // });
+  if (highlighter.state.core) return;
+
+  const highlighterCore = await createHighlighterCore({
+    themes: [import('@shikijs/themes/github-dark'), import('@shikijs/themes/github-light')],
+    langs: [
+      // --- 基礎與文件 ---
+      import('@shikijs/langs/markdown'),
+      import('@shikijs/langs/diff'), // AI 建議修改程式碼時必備
+      import('@shikijs/langs/mermaid'), // AI 畫圖表常用
+
+      // --- Web 前端 (含現代框架) ---
+      import('@shikijs/langs/javascript'),
+      import('@shikijs/langs/typescript'),
+      import('@shikijs/langs/jsx'),
+      import('@shikijs/langs/tsx'),
+      import('@shikijs/langs/html'),
+      import('@shikijs/langs/css'),
+      import('@shikijs/langs/scss'),
+      import('@shikijs/langs/vue'),
+      import('@shikijs/langs/svelte'),
+      import('@shikijs/langs/astro'),
+
+      // --- 主流後端與系統語言 ---
+      import('@shikijs/langs/python'), // AI/資料科學第一名
+      import('@shikijs/langs/java'),
+      import('@shikijs/langs/go'),
+      import('@shikijs/langs/rust'),
+      import('@shikijs/langs/cpp'), // 即 C++
+      import('@shikijs/langs/c'),
+      import('@shikijs/langs/csharp'), // 即 C#
+      import('@shikijs/langs/php'),
+      import('@shikijs/langs/ruby'),
+      import('@shikijs/langs/elixir'), // 現代高並發語言
+      import('@shikijs/langs/zig'),
+
+      // --- 移動端與跨平台 ---
+      import('@shikijs/langs/dart'), // Flutter
+      import('@shikijs/langs/swift'),
+      import('@shikijs/langs/kotlin'),
+
+      // --- 資料、設定與 Ops (DevOps) ---
+      import('@shikijs/langs/json'),
+      import('@shikijs/langs/yaml'),
+      import('@shikijs/langs/toml'),
+      import('@shikijs/langs/xml'),
+      import('@shikijs/langs/sql'),
+      import('@shikijs/langs/bash'), // 包含 sh
+      import('@shikijs/langs/powershell'),
+      import('@shikijs/langs/nix'),
+      import('@shikijs/langs/dockerfile'),
+      import('@shikijs/langs/nginx'),
+      import('@shikijs/langs/makefile'),
+      import('@shikijs/langs/terraform'), // HCL
+
+      // --- 專業領域 (科學、資料、API) ---
+      import('@shikijs/langs/r'),
+      import('@shikijs/langs/julia'),
+      import('@shikijs/langs/latex'), // 數學公式
+      import('@shikijs/langs/graphql'),
+      import('@shikijs/langs/prisma'), // ORM
+      import('@shikijs/langs/proto'), // gRPC
+      import('@shikijs/langs/solidity'), // 區塊鏈
+    ],
+    engine: createOnigurumaEngine(import('shiki/wasm')),
+  });
+
+  highlighter.state.core = highlighterCore;
+});
+
+const md = new MarkdownIt({
+  html: true,
+  breaks: true,
+  linkify: true,
+  typographer: true,
 });
 
 const renderedMarkdown = computed(() => {
-  const md = new MarkdownIt({
-    html: true,
-    breaks: true,
-    linkify: true,
-    typographer: true,
-  });
+  if (highlighter.state.core) {
+    md.use(
+      fromHighlighter(highlighter.state.core, {
+        theme: isDark.value ? 'github-dark' : 'github-light',
+        fallbackLanguage: 'md',
+      }),
+    );
+  }
 
-  // if (highlighter.state.core) {
-  //   md.use(
-  //     fromHighlighter(highlighter.state.core, {
-  //       theme: isDark.value ? 'github-dark' : 'github-light',
-  //       fallbackLanguage: 'ts',
-  //     }),
-  //   );
-  // }
-
+  // TODO: 如果要用 textarea 作為提示輸入且算繪使用者的提示輸入，需要再搭配 dompurify，使用 tiptap 可忽略
   return md.render(props.content);
 });
 </script>

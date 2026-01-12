@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import { ref, nextTick, onUnmounted } from 'vue';
-
-import useStore from './store.ts';
+import { nextTick, onUnmounted, ref } from 'vue';
 import MarkdownRenderer from './MarkdownRenderer.vue';
+import useStore from './store.ts';
 
 const { state, getters, actions, $reset } = useStore();
 
@@ -20,34 +19,34 @@ const messages = ref([
   // { role: 'assistant', content: '沒問題！這是一個仿照 Gemini 的設計。' }
 ]);
 
-const scrollToBottom = async () => {
-  await nextTick();
-  if (chatContainer.value) {
-    chatContainer.value.scrollTop = chatContainer.value.scrollHeight;
-  }
-};
+// const scrollToBottom = async () => {
+//   await nextTick();
+//   if (chatContainer.value) {
+//     chatContainer.value.scrollTop = chatContainer.value.scrollHeight;
+//   }
+// };
 
-const handleSend = async () => {
-  if (!userInput.value.trim() || isLoading.value) return;
+// const handleSend = async () => {
+//   if (!userInput.value.trim() || isLoading.value) return;
 
-  const userText = userInput.value;
-  messages.value.push({ role: 'user', content: userText });
-  userInput.value = '';
-  scrollToBottom();
+//   const userText = userInput.value;
+//   messages.value.push({ role: 'user', content: userText });
+//   userInput.value = '';
+//   scrollToBottom();
 
-  // 模擬 AI 回應
-  isLoading.value = true;
+//   // 模擬 AI 回應
+//   isLoading.value = true;
 
-  setTimeout(() => {
-    isLoading.value = false;
-    messages.value.push({
-      role: 'assistant',
-      content:
-        '這是一個使用 Vue SFC 與 Tailwind CSS 構建的 Gemini UI 範例。它包含了自動滾動、深色模式配色方案以及輸入框的動態樣式。',
-    });
-    scrollToBottom();
-  }, 1500);
-};
+//   setTimeout(() => {
+//     isLoading.value = false;
+//     messages.value.push({
+//       role: 'assistant',
+//       content:
+//         '這是一個使用 Vue SFC 與 Tailwind CSS 構建的 Gemini UI 範例。它包含了自動滾動、深色模式配色方案以及輸入框的動態樣式。',
+//     });
+//     scrollToBottom();
+//   }, 1500);
+// };
 </script>
 
 <template>

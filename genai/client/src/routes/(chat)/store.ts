@@ -1,8 +1,8 @@
 import { addHours, formatISO } from 'date-fns';
+import { stream } from 'fetch-event-stream';
 import { reactive } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { defineStore } from 'vue-storer';
-import { stream } from 'fetch-event-stream';
 
 import type { Message } from './types.ts';
 
@@ -41,9 +41,8 @@ export default defineStore('/(chat)', () => {
       const assistantMessageIndex = state.messages.findIndex((m) => m.id === assistantId);
 
       for await (const textPart of textStream) {
-        if (textPart.event === 'end') break;
-
-        state.messages[assistantMessageIndex].content += textPart.data;
+        const content = JSON.parse(textPart.data || '');
+        state.messages[assistantMessageIndex].content += content;
       }
 
       state.connecting = false;
