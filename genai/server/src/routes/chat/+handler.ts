@@ -19,7 +19,7 @@ export default (async (app) => {
   $ curl --request GET \
          --url http://localhost:3000/api/chat
   */
-  app.get('', async (request, reply) => {
+  app.get('', async (_request, reply) => {
     const { text } = await generateText({
       model: llm,
       system: ``,

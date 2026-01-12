@@ -58,11 +58,11 @@ const renderedMarkdown = computed(() => {
 <style lang="scss" scoped>
 .MarkdownRenderer {
   > :deep(:first-child) {
-    @apply !mt-1;
+    @apply mt-1!;
   }
 
   > :deep(:last-child) {
-    @apply !mb-1;
+    @apply mb-1!;
   }
 }
 

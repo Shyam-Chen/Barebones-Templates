@@ -1,5 +1,12 @@
 <script lang="ts" setup>
-import { ref, nextTick } from 'vue';
+import { ref, nextTick, onUnmounted } from 'vue';
+
+import useStore from './store.ts';
+import MarkdownRenderer from './MarkdownRenderer.vue';
+
+const { state, getters, actions, $reset } = useStore();
+
+onUnmounted(() => $reset());
 
 const userName = ref('使用者');
 const userInput = ref('');
@@ -49,7 +56,7 @@ const handleSend = async () => {
     <main ref="chatContainer" class="flex-1 overflow-y-auto no-scrollbar scroll-smooth">
       <div class="max-w-3xl mx-auto px-4 py-8">
         <!-- 初始狀態的問候語 -->
-        <div v-if="messages.length === 0" class="mt-20 mb-12">
+        <div v-if="state.messages.length === 0" class="mt-20 mb-12">
           <h1
             class="text-5xl font-medium bg-gradient-to-r from-[#4285f4] via-[#9b72cb] to-[#d96570] bg-clip-text text-transparent mb-2"
           >
@@ -60,7 +67,7 @@ const handleSend = async () => {
 
         <!-- 訊息列表 -->
         <div class="space-y-10">
-          <div v-for="(msg, index) in messages" :key="index">
+          <div v-for="(msg, index) in state.messages" :key="index">
             <!-- 使用者訊息 -->
             <div v-if="msg.role === 'user'" class="flex flex-col items-end">
               <div
@@ -82,9 +89,10 @@ const handleSend = async () => {
               </div>
 
               <div class="flex-1 space-y-4 pt-1">
-                <div class="prose prose-invert max-w-none leading-relaxed text-[#e3e3e3]">
+                <MarkdownRenderer :content="msg.content" />
+                <!-- <div class="prose prose-invert max-w-none leading-relaxed text-[#e3e3e3]">
                   {{ msg.content }}
-                </div>
+                </div> -->
 
                 <!-- 操作按鈕 (滑鼠移入時顯示更明顯) -->
                 <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -121,7 +129,7 @@ const handleSend = async () => {
           </div>
 
           <!-- 載入中動畫 -->
-          <div v-if="isLoading" class="flex gap-4">
+          <div v-if="state.connecting" class="flex gap-4">
             <div class="w-8 h-8 rounded-full bg-[#2d2f31] animate-pulse"></div>
             <div class="flex-1 space-y-2">
               <div class="h-4 bg-[#1e1f20] rounded w-3/4 animate-pulse"></div>
@@ -140,8 +148,8 @@ const handleSend = async () => {
         >
           <!-- 輸入框 -->
           <textarea
-            v-model="userInput"
-            @keydown.enter.exact.prevent="handleSend"
+            v-model="state.prompt"
+            @keydown.enter.exact.prevent="actions.sendPrompt()"
             rows="1"
             placeholder="在這邊輸入提示詞"
             class="w-full bg-transparent border-none focus:ring-0 text-[#e3e3e3] placeholder-[#8e918f] px-4 py-2 resize-none min-h-[56px] overflow-y-auto"
@@ -175,10 +183,10 @@ const handleSend = async () => {
                 </svg>
               </button>
               <button
-                @click="handleSend"
-                :disabled="!userInput.trim()"
+                @click="actions.sendPrompt()"
+                :disabled="state.connecting"
                 class="p-2 transition rounded-full"
-                :class="userInput.trim() ? 'text-[#4285f4] hover:bg-[#2d2f31]' : 'text-[#444746]'"
+                :class="state.prompt.trim() ? 'text-[#4285f4] hover:bg-[#2d2f31]' : 'text-[#444746]'"
               >
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>

@@ -1,8 +1,8 @@
-import { request } from '@x/ui';
 import { addHours, formatISO } from 'date-fns';
-import { reactive, readonly } from 'vue';
+import { reactive } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { defineStore } from 'vue-storer';
+import { stream } from 'fetch-event-stream';
 
 import type { Message } from './types.ts';
 
@@ -11,77 +11,42 @@ export default defineStore('/(chat)', () => {
   const route = useRoute();
 
   const state = reactive({
+    connecting: false,
+    prompt: '',
     messages: [] as Message[],
+    abortController: null as AbortController | null,
   });
 
-  const getters = readonly({});
+  const getters = reactive({});
 
-  const actions = readonly({
-    async signIn() {
-      state.signInLoading = true;
+  const actions = reactive({
+    async sendPrompt() {
+      state.connecting = true;
 
-      const response = await request<SignInRes>('/auth/sign-in', {
+      const userId = self.crypto.randomUUID();
+      const prompt = state.prompt.trim();
+      state.messages = [...state.messages, { id: userId, role: 'user', content: prompt }];
+      state.prompt = '';
+
+      state.abortController = new AbortController();
+
+      const textStream = await stream(`${process.env.API_URL}/api/chat`, {
         method: 'POST',
-        body: state.signInForm,
+        body: JSON.stringify({ messages: state.messages }),
+        signal: state.abortController.signal,
       });
 
-      const result = response._data;
+      const assistantId = self.crypto.randomUUID();
+      state.messages.push({ id: assistantId, role: 'assistant', content: '' });
+      const assistantMessageIndex = state.messages.findIndex((m) => m.id === assistantId);
 
-      if (response.status === 200) {
-        if (result?.accessToken && !result?.otpEnabled && !result?.otpVerified) {
-          localStorage.setItem('accessToken', result.accessToken);
-          localStorage.setItem('refreshToken', result.refreshToken);
-          localStorage.setItem('expiresIn', formatISO(addHours(new Date(), 12)));
-          const path = route.redirectedFrom?.path || '/dashboard';
-          await router.push(path === '/' ? '/dashboard' : path);
-        }
+      for await (const textPart of textStream) {
+        if (textPart.event === 'end') break;
 
-        if (!result?.accessToken && result?.otpEnabled && result?.otpVerified) {
-          state.otpEnabled = true;
-        }
-
-        if (result?.accessToken && result?.otpEnabled && !result?.otpVerified) {
-          localStorage.setItem('accessToken', result.accessToken);
-          localStorage.setItem('refreshToken', result.refreshToken);
-          localStorage.setItem('expiresIn', formatISO(addHours(new Date(), 12)));
-          await router.push('/two-factor-auth');
-        }
+        state.messages[assistantMessageIndex].content += textPart.data;
       }
 
-      if (response.status === 400) {
-        const found = result?.message?.match(/(#+[a-zA-Z0-9(_)]{1,})/gm)?.[0];
-
-        if (found) {
-          const errKey = found.replace('#', '') as keyof SignInForm;
-          state.signInValdn[errKey] = result?.message.replace(`${found} `, '');
-        }
-
-        state.signInLoading = false;
-      }
-    },
-    async inputCode() {
-      if (state.mfaAuthCode.length === 6) {
-        const response = await request<OtpValidateRes>('/auth/otp/validate', {
-          method: 'POST',
-          body: {
-            code: state.mfaAuthCode,
-            username: state.signInForm.username,
-            password: state.signInForm.password,
-          },
-        });
-
-        const result = response._data;
-
-        if (response.status === 200) {
-          if (result?.accessToken && result?.refreshToken) {
-            localStorage.setItem('accessToken', result.accessToken);
-            localStorage.setItem('refreshToken', result.refreshToken);
-            localStorage.setItem('expiresIn', formatISO(addHours(new Date(), 12)));
-            const path = route.redirectedFrom?.path || '/dashboard';
-            await router.push(path === '/' ? '/dashboard' : path);
-          }
-        }
-      }
+      state.connecting = false;
     },
   });
 
