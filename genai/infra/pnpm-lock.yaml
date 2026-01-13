@@ -11,6 +11,9 @@ importers:
       '@pulumi/docker':
         specifier: ^4.11.0
         version: 4.11.0(typescript@5.9.3)
+      '@pulumi/google-native':
+        specifier: ^0.32.0
+        version: 0.32.0(typescript@5.9.3)
       '@pulumi/kubernetes':
         specifier: ^4.24.1
         version: 4.24.1(typescript@5.9.3)
@@ -379,6 +382,9 @@ packages:
 
   '@pulumi/docker@4.11.0':
     resolution: {integrity: sha512-NUXMCWL3VBtlclC4u7G9LcToCQGiR/wOuRdKHzAqbn0nzaVuPV3NlDZIz7CpcHL/mGGIQ00/HnLGCA8lC1kSFA==}
+
+  '@pulumi/google-native@0.32.0':
+    resolution: {integrity: sha512-7PJrCGHhmN/WnscNoImQtJPd1y817F/678KcgT8JhtTo4Af5enFpKXbQP4owoA9ngoJ4s+0lopBJHDbQi528Zw==}
 
   '@pulumi/kubernetes@4.24.1':
     resolution: {integrity: sha512-3KC4fsxniS9W1dUo45MzMDByIWc+wGhOYQdbVe/neSmuRFpu3JmiLHSGukcIGNUGSblqRdVzsfiW5WEtCghbcA==}
@@ -1651,6 +1657,15 @@ snapshots:
     dependencies:
       '@pulumi/pulumi': 3.215.0(typescript@5.9.3)
       semver: 5.7.2
+    transitivePeerDependencies:
+      - bluebird
+      - supports-color
+      - ts-node
+      - typescript
+
+  '@pulumi/google-native@0.32.0(typescript@5.9.3)':
+    dependencies:
+      '@pulumi/pulumi': 3.215.0(typescript@5.9.3)
     transitivePeerDependencies:
       - bluebird
       - supports-color

@@ -3,7 +3,7 @@ import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { QdrantClient } from '@qdrant/js-client-rest';
 import type { ModelMessage } from 'ai';
-import { embedMany, generateText, jsonSchema, streamText, tool, stepCountIs } from 'ai';
+import { embedMany, generateText, jsonSchema, stepCountIs, streamText, tool } from 'ai';
 import Type from 'typebox';
 
 import auth from '~/middleware/auth.ts';
