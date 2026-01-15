@@ -48,6 +48,17 @@ pnpm dlx degit Shyam-Chen/Barebones-Templates/tauri my-tauri-project
 
 ## Part 1: Gen AI Chat Assistant
 
+- `client`
+  - `vue`
+  - `markdown-it`
+  - Google OAuth 2.0
+- `server`
+  - `fastify`
+  - Google AI Studio
+- `infra`
+  - `pulumi`
+  - Google Cloud
+
 ```coffee
 genai
   ├── client
@@ -62,6 +73,25 @@ genai
 ```
 
 ## Part 2: Gen AI Voice Assistant
+
+- `client`
+  - `vue`
+  - `markdown-it`
+  - Google OAuth 2.0
+  - `tauri`
+  - Windows App
+  - Android App
+  - Raspberry Pi 5 Model B
+  - Raspberry Pi Touch Display 2
+- `server`
+  - `fastify`
+  - Google AI Studio
+- `infra`
+  - `pulumi`
+  - Google Cloud
+- `device`
+  - `embassy-rp`
+  - Raspberry Pi Pico 2 W
 
 ```coffee
 genai2
