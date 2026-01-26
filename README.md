@@ -55,9 +55,20 @@ pnpm dlx degit Shyam-Chen/Barebones-Templates/tauri my-tauri-project
 - `server`
   - `fastify`
   - Google AI Studio
+  - Qdrant
+  - MongoDB
 - `infra`
   - `pulumi`
   - Google Cloud
+
+多階段漸進演示方向：
+
+- [x] 封裝 Gemini (SSE 回覆)
+  - [ ] + 短期記憶
+  - [ ] + Tool (Google 搜尋)
+- [ ] Gemini RAG 知識庫
+  - [ ] + 短期記憶
+  - [ ] + Tool (找當前用戶)
 
 ```coffee
 genai
@@ -92,6 +103,11 @@ genai
 - `device`
   - `embassy-rp`
   - Raspberry Pi Pico 2 W
+
+演示：
+
+- 跨平台語音對話，螢幕文字算繪
+- 閒置 10 分鐘進入「待機」狀態，喚醒詞為「Hey Gemini」(嵌入式設備上)
 
 ```coffee
 genai2

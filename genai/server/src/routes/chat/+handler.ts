@@ -3,22 +3,25 @@ import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { QdrantClient } from '@qdrant/js-client-rest';
 import type { ModelMessage } from 'ai';
-import { embedMany, generateText, jsonSchema, stepCountIs, streamText, tool } from 'ai';
+import { embed, embedMany, generateText, jsonSchema, stepCountIs, streamText, tool } from 'ai';
 import Type from 'typebox';
 
 import auth from '~/middleware/auth.ts';
+import chunkText from '~/utils/chunkText.ts';
 
 const google = createGoogleGenerativeAI({ apiKey: process.env.GEMINI_API_KEY });
 const llm = google('gemini-3-flash-preview');
-const embedding = google.embeddingModel('gemini-embedding-001');
+const embeddingModel = google.embeddingModel('gemini-embedding-001');
 
 const qdrant = new QdrantClient({ url: process.env.QDRANT_URL });
+const COLLECTION_NAME = 'my-knowledge-base';
 
 export default (async (app) => {
   /*
   $ curl --request GET \
          --url http://localhost:3000/api/chat
   */
+  // 🟢
   app.get('', async (_request, reply) => {
     const { text } = await generateText({
       model: llm,
@@ -29,6 +32,7 @@ export default (async (app) => {
     return reply.send({ text });
   });
 
+  // 🟢
   app.post('', { sse: true }, async (request, reply) => {
     const body = JSON.parse(request.body as string) as { messages: ModelMessage[] };
 
@@ -47,49 +51,58 @@ export default (async (app) => {
 
   // ---
 
+  // 🟡
   app.post('/embed', async (_request, reply) => {
-    // 一個標準的知識庫 Embedding 流程圖：
-    // 1. Raw Data：原始 PDF/Word 文件。
-    // 2. Parsing：轉為 Markdown/Text。
-    // 3. Chunking：切成 500 字的小塊（帶有 Overlap，50~100 字的 Overlap（重疊））。
-    // 4. Enrichment (分類)：加上 Metadata（分類、標籤、摘要）。
-    //     -> 來源資訊：文件名、頁碼、URL
-    //     -> 分類標籤：產品類型、部門、文檔類別（如：技術手冊、FAQ、合約）
-    //     -> 時間戳記：確保 AI 能抓到最新版本的資料
-    //     -> 摘要（Summary）：有時我們會先叫 LLM 幫這一小段寫個摘要，然後同時 Embed 原始內容和摘要。檢索時用摘要去對齊，命中率會更高
-    // 5. Embedding：將文字轉為 1536 維的數值向量。
-    // 6. Storage：存入向量資料庫（如 Pinecone, Milvus, Chroma, Weaviate）。
+    // 推薦的參數設定
+    // https://ai.google.dev/gemini-api/docs/embeddings?hl=zh-tw#model-versions
+    const OUTPUT_DIMENSIONALITY = 3072; // gemini-embedding-001 預設是 3072，建議 768、1536 或 3072
+    const CHUNK_SIZE = 800; // 每個 chunk 的字數
+    const CHUNK_OVERLAP = 80; // 每個 chunk 的重疊字元為 10% 的 CHUNK_SIZE，確保語意連續
 
-    const documents = [
-      'Qdrant 是一個高效能的向量資料庫。',
-      'Gemini 是 Google 開發的多模態大型語言模型。',
-      'TypeScript 讓 JavaScript 開發更安全。',
-    ];
+    //  檢查並建立 Qdrant Collection (如果不存在)
+    const collections = await qdrant.getCollections();
+    const exists = collections.collections.some((c) => c.name === COLLECTION_NAME);
+
+    if (!exists) {
+      await qdrant.createCollection(COLLECTION_NAME, {
+        vectors: {
+          size: OUTPUT_DIMENSIONALITY,
+          distance: 'Cosine', // 餘弦相似度
+        },
+      });
+    }
+
+    const body = {
+      content: `
+        ### 特別休假日數計算基礎
+
+        員工在本公司連續工作滿一定時間後，得依下列規定作為核給年度特別休假日數計算基礎：
+
+        - 六個月以上一年未滿者，給予三日。
+        - 一年以上二年未滿者，每年七日。
+        - 二年以上三年未滿者，每年十日。
+        - 三年以上五年未滿者，每年十四日。
+        - 五年以上十年未滿者，每年十五日。
+        - 十年以上者，每一年加給一日，但總日數不得超過三十日。
+      `,
+      summary: '特別休假給假要點',
+    };
+
+    // 嘗試 `@langchain/textsplitters`
+    const chunks = chunkText(body.content, CHUNK_SIZE, CHUNK_OVERLAP);
 
     const { embeddings } = await embedMany({
-      model: embedding,
-      values: documents,
+      model: embeddingModel,
+      values: chunks,
     });
-
-    const COLLECTION_NAME = 'my-knowledge-base';
-
-    // await qdrant.createCollection(COLLECTION_NAME, {
-    //   vectors: { size: 768, distance: 'Cosine' },
-    // });
-
-    // const collection = await qdrant.getCollection(COLLECTION_NAME);
 
     const points = embeddings.map((vector, index) => ({
       id: randomUUID(),
       vector,
       payload: {
-        content: documents[index],
-        // 把 Metadata 寫進 Prompt
-        // 例如：「以下資訊來自 [source_type: PDF] 的 [category: HR] 部門文件，最後更新於 [created_at]：內容：[content]」
-        metadata: {
-          source: 'manual_input',
-          timestamp: new Date().toISOString(),
-        },
+        text: chunks[index],
+        // source: 'manual_input',
+        timestamp: new Date().toISOString(),
       },
     }));
 
@@ -101,36 +114,45 @@ export default (async (app) => {
     return reply.send({ message: 'OK' });
   });
 
+  // 🟡
   app.post('/query', { sse: true }, async (request, reply) => {
     const body = JSON.parse(request.body as string);
 
-    // 1. 假設從向量資料庫檢索出了結果
-    const searchResults = [
-      { content: '員工每年有 7 天特休', metadata: { source: '員工手冊', page: 5 } },
-      { content: '特休需於三日前申請', metadata: { source: '差勤管理辦法', page: 2 } },
-    ];
+    const input = `入職滿半年有幾天特休？`;
 
-    const contextString = searchResults
-      .map(
-        (res) =>
-          `資料來源：[${res.metadata.source} 第 ${res.metadata.page} 頁]\n內容：${res.content}`,
-      )
-      .join('\n\n');
+    const { embedding } = await embed({
+      model: embeddingModel,
+      value: input,
+    });
 
-    const userQuery = '請問我有幾天特休？要怎麼請假？';
+    // 從 Qdrant 進行向量搜尋
+    const searchResults = await qdrant.search(COLLECTION_NAME, {
+      vector: embedding,
+      limit: 3,
+      with_payload: true,
+    });
+
+    // 組合 Context
+    const context = searchResults.map(
+      (r) => `
+      ${r.payload?.text}
+
+      ${r.payload?.source ? `資料來源：${r.payload?.source}` : ''}
+    `,
+    );
 
     const { textStream } = streamText({
       model: llm,
       prompt: `
-        你是一個專業的助手，請根據以下提供的「參考資料」回答使用者的問題。
-        如果資料中沒有提到，請回答不知道，不要瞎編。
+        你是一個專業的助手，請根據以下提供的「參考資料」回答使用者的提問。
+        如果資料中沒有提到，請回答不知道。
         回覆時請務必註明資料來源。
 
         ### 參考資料：
-        ${contextString}
+        ${context}
 
-        ### 使用者問題：
-        ${userQuery}
+        ### 使用者的提問：
+        ${input}
       `,
     });
 
@@ -141,8 +163,9 @@ export default (async (app) => {
 
   // ---
 
+  // 🔴
   app.post('/tool', { sse: true, onRequest: [auth] }, async (request, reply) => {
-    const input = `What is my username?`;
+    const input = `我還有剩下幾天的特休可用？`;
 
     const { textStream } = streamText({
       model: llm,
@@ -176,6 +199,7 @@ export default (async (app) => {
 
   // ---
 
+  // 🔴
   app.post('/step', { sse: true, onRequest: [auth] }, async (request, reply) => {
     // 當前用戶名
     // request.user.username
