@@ -36,12 +36,51 @@ export default (async (app) => {
   app.post('', { sse: true }, async (request, reply) => {
     const body = JSON.parse(request.body as string) as { messages: ModelMessage[] };
 
+    // 只留近 5 則的來回對話紀錄
     const limitedMessages = body.messages.slice(-10);
 
     const { textStream } = streamText({
       model: llm,
       system: ``,
       messages: limitedMessages,
+    });
+
+    for await (const textPart of textStream) {
+      await reply.sse.send({ data: textPart });
+    }
+  });
+
+  // 單次摘要 - Summarize messages
+  // 🟢
+  app.post('/summarize', { sse: true }, async (request, reply) => {
+    const body = JSON.parse(request.body as string) as { messages: ModelMessage[] };
+
+    // 保留 5 則的來回對話紀錄
+    const SUMMARY_THRESHOLD = 10;
+
+    let chatHistory = body.messages;
+    let contextSummary = '';
+
+    // Enhancement: 整合進資料庫，做累加摘要
+    if (body.messages.length > SUMMARY_THRESHOLD) {
+      const messagesToSummarize = body.messages.slice(0, -SUMMARY_THRESHOLD);
+      const recentMessages = body.messages.slice(-SUMMARY_THRESHOLD);
+
+      // 呼叫 LLM 進行摘要
+      const { text } = await generateText({
+        model: llm,
+        system: `你是一個專業的對話管理助手。請將提供的對話紀錄總結成一段精簡的摘要，保留關鍵的事實、用戶偏好與目前的任務進度。摘要必須非常簡短。`,
+        prompt: `請總結以下對話：\n${messagesToSummarize.map((m) => `${m.role}: ${m.content}`).join('\n')}`,
+      });
+
+      contextSummary = `這是先前對話的摘要背景：${text}`;
+      chatHistory = recentMessages;
+    }
+
+    const { textStream } = streamText({
+      model: llm,
+      system: contextSummary,
+      messages: chatHistory,
     });
 
     for await (const textPart of textStream) {

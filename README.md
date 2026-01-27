@@ -64,11 +64,11 @@ pnpm dlx degit Shyam-Chen/Barebones-Templates/tauri my-tauri-project
 多階段漸進演示方向：
 
 - [x] 封裝 Gemini (SSE 回覆)
-  - [ ] + 短期記憶
-  - [ ] + Tool (Google 搜尋)
+  - [ ] 短期記憶
+  - [ ] Tool (Google 搜尋)
 - [ ] Gemini RAG 知識庫
-  - [ ] + 短期記憶
-  - [ ] + Tool (找當前用戶)
+  - [ ] 短期記憶
+  - [ ] Tool (找當前用戶)
 
 ```coffee
 genai
