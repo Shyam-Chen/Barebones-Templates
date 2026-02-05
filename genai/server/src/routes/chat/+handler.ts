@@ -17,21 +17,6 @@ const qdrant = new QdrantClient({ url: process.env.QDRANT_URL });
 const COLLECTION_NAME = 'my-knowledge-base';
 
 export default (async (app) => {
-  /*
-  $ curl --request GET \
-         --url http://localhost:3000/api/chat
-  */
-  // 🟢
-  app.get('', async (_request, reply) => {
-    const { text } = await generateText({
-      model: llm,
-      system: ``,
-      prompt: `什麼是 Qdrant？`,
-    });
-
-    return reply.send({ text });
-  });
-
   // 🟢
   app.post('', { sse: true }, async (request, reply) => {
     const body = JSON.parse(request.body as string) as { messages: ModelMessage[] };
